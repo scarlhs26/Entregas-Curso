@@ -1,0 +1,385 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:sans-serif ;
+}
+
+/*MODO OSCURO*/
+#toggle{
+    display: none;
+}
+#label_toggle{
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 2em;
+}
+.dark{
+    background-color: #333;
+    color: #FFF;
+}
+
+/*--------------------------------*/
+header{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 80px; 
+    flex-wrap: wrap;
+    padding-top: 30px;
+    padding-left: 30px;
+    margin-bottom: 30px;
+}
+.seccion-logo{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+}
+.direccion{
+    display: flex;
+    flex-direction: column;
+}
+.direccion-2{
+    display: flex;
+}
+.seccion-opciones{
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    padding-right: 50px;
+    font-weight: 600;
+}
+.seccion-opciones2{
+    width: 150px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+}
+#seccionNegra{
+    width: 100%;
+    height: 80px;
+    background-color: #373B49;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 0px 80px;
+}
+.seccionNegra-verde{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    width: 300px;
+    padding: 31px 50px;
+    color: #fff;
+    background-color: #A4B522;
+    text-align: center;
+    font-size: 15px;
+}
+.seccionesNegra-trans{
+    color: #fff;
+    text-decoration: none;
+}
+.div-menu-seccion{
+    display: flex;
+
+}
+/*MENU HAMBURGUESA*/
+.menu-ham{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 50px 50px 0 50px;
+    width: 350px;
+    height: 79.5vh;
+    border-right: 1px solid #EBEBEB;
+}
+
+.menu-ham-elements{
+    display: flex;
+    text-decoration: none;
+    color: #373B49;
+    font-size: 18px;
+    font-weight: 500;
+    gap: 20px;
+    align-items: center;
+}
+
+.menu-ham-absolute{
+    position: absolute;
+    z-index: 20;
+    background-color: #FFF;
+    width: 70%;
+    box-shadow: 0px 13px 36px 20px rgba(23, 58, 110, 0.10), 0px 29px 23px 0px rgba(20, 18, 103, 0.2);
+}
+#menu-ham-svg{
+ z-index: 30;
+ margin: 10px;
+ cursor: pointer;
+}
+
+
+/*SECCION DE VENTAS*/
+.seccion-pricipal{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px;
+    width: 1500px;
+}
+.seccion-pricipal h1{
+    color: #333;
+}
+.ventas{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+}
+
+.ventas1{
+    width: 270px;
+    height: 312px;
+    padding: 12px ;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 1px solid #EBEBEB;
+    background: #FFF;
+    transition: height 0.3s ease;
+    overflow: hidden;
+}
+.hover-seccion{
+    display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  
+}
+.hover-seccion:hover{
+    max-width: 270px;
+   height: 406px ;
+   transform: none;
+
+}
+.ventas1:hover{
+    height: 400px;
+    z-index: 1;
+    transform-origin: top;
+    box-shadow: 0px 13px 36px 0px rgba(23, 58, 110, 0.10), 0px 29px 23px 0px rgba(20, 18, 103, 0.03);
+}
+.ventas1:not(:hover) {
+    z-index: 0; 
+}
+.v-1{
+    display: flex;
+    justify-content: space-between;
+}
+.v-2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.boton{
+    width: 200px;
+    position: absolute;
+    background-color: #373B49; 
+    padding: 15px 20px; 
+    color: #fff;
+    border-radius: 8px;
+    opacity: 0; /* Inicialmente oculto */
+    transition: opacity 0s ease;
+    bottom: 20px;
+    border: none;
+}
+.boton:hover{
+    background-color: #575757;
+}
+
+
+.ventas1:hover .boton {
+    opacity: 1; /* Muestra el botón de "Añadir al carrito" en el hover */
+}
+/*-----------CARRUSEL----------------------------------------*/
+
+
+/*--------------EJEMPLO DE CARRUSEL----------*/
+
+#carrusel{
+    overflow: hidden;
+}
+.carousel-container {
+    display: flex;
+    overflow: hidden;
+    width: 1160px;
+  }
+  
+  .carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  .ventas1 {
+    width: 270px;
+    height: 312px;
+    margin-right: 20px; /* Espacio entre las secciones */
+  }
+  
+  #prevBtn,#nextBtn {
+    position: absolute;
+    top:50% ;
+    left: 50%;
+    background-color: #A4B522;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+    padding: 5px 10px;
+  }
+  #prevBtn{
+    position: absolute;
+    top:70% ;
+    left: 50%;
+  }
+  #nextBtn{
+    position: absolute;
+    top:70% ;
+    left: 60%;
+
+  }
+  
+
+/*----------------------------------------------------------------------------*/
+
+/*---------------VENTANA EMERGENTE---------------------------*/
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.boton-emergente{
+    text-decoration: none;
+    color: #FFF;
+    background-color: #A4B522;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 12px 90px;
+    margin-top: 100px;
+}
+
+
+
+/*MEDIAS QUERY*/
+@media only screen and (max-width: 1812px) {
+    .seccion-pricipal{
+        width: 1200px;
+    }
+    
+}
+
+@media only screen and (max-width: 1169px){
+    header{
+        height: 120px;
+        gap: 5px;
+    }
+    .seccion-opciones{
+        width: 100%;
+        
+        
+    }
+    .seccion-opciones2{
+        font-size: 10px;
+        width: 90px;
+        
+    }
+    .seccion-pricipal{
+        width: 800px;
+    }
+    
+}
+@media only screen and (max-width: 991px){
+    #seccionNegra{
+        height: 64px;
+        gap:20px;
+        padding: 0px 30px;
+    }
+    .menu-permanente{
+        display: none;
+    
+    }
+    .seccionNegra-verde{
+        width: 150px;
+        height: 50px;
+        font-size: 10px;
+    }
+    .seccionesNegra-trans{
+        font-size: 10px;
+        
+    }
+
+}
+@media only screen and (min-width: 991px){
+    .menu-ham-absolute{
+        display: none;
+    }
+    #menu-ham-svg svg{
+        display: none;
+    }
+
+    
+}
+@media only screen and (max-width: 600px){
+    .seccion-pricipal{
+        width: 500px;
+    }
+    .boton{
+        width: 200px;
+        font-size: 9px;
+        padding: 10px 50px;
+    }
+    #prevBtn{
+        position: absolute;
+        top:80% ;
+        left: 40%;
+      }
+      #nextBtn{
+        position: absolute;
+        top:80% ;
+        left: 60%;
+    
+      }
+
+    
+
+
+}
+
+
+
+
