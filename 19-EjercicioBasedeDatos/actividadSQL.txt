@@ -1,0 +1,155 @@
+---------- EJERCICIO PARA PRACTICAR
+
+Este ejercicio tendra un enfoque a un sistema de gestion de tienda.
+
+1. Crear una base de datos llamada : tienda
+
+    Crear 4 tablas dentro de la base de datos:
+
+    NOTA: Recuerden utilizar PRIMARY KEY, FOREIGN y el AUTO_INCREMENT.
+
+    - Tabla 1: usuarios (id, nombre, apellido, edad, email, contrasena, rol, fechaCreacion, fechaActualizacion). LISTO
+
+    - Tabla 2: categoria (id, nombre, tipo, fechaCreacion, fecha_actualizacion).LISTO
+
+    - Tabla 3: productos (id, nombre_producto, usuario_id, precio, stock, id_categoria, fechaCreacion, fechaActualizacion).
+
+    - Tabla 4: ventas (id, producto_id, usuario_id, cantidad, precio_total, fechaCreacion, fechaActualizacion).
+
+2. Insertar datos:
+
+    - Insertar 5 usuarios (1 admin) LISTO
+    - Registrar 3 categorias LISTO
+    - Registrar 6 productos (2 por cada categoria)
+    - Registrar 10 ventas
+
+3. Consultas a realizar 
+
+    - Seleccionar usuarios con un rol especifico.
+    - Obtener el stock disponible de todos los productos.
+    - Calcular el total de ventas por usuario_id
+    - Actualizar el precio de un producto mayor a 100 y aplicar descuento del 10%.
+    - Eliminar ventas de un producto agotado (con un stock de 0).
+
+
+-----------------------------------RESPUESTA------------------------------------------------------------------------
+
+---Crear la base de datos
+CREATE DATABASE actividadcurso;
+
+USE actividadcurso;
+
+---Creacion de la tabla 1
+CREATE TABLE usuarios(
+    id INT PRIMARY KEY,
+    nombre VARCHAR(50),
+    apellido VARCHAR(50),
+    edad INT,
+    email VARCHAR(200),
+    contrasena VARCHAR(255) NOT NULL,
+    rol VARCHAR(10),
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fecha_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT INTO usuarios (id, nombre, apellido, edad, email, contrasena, rol) VALUES
+   (101, 'Maria', 'Perez', 28, 'Maria@gmail.com', 'maria123', 'Admin'),
+   (102, 'Pepe', 'Hernandez', 30, 'Pepe@gmail.com', 'pepe123', 'user'),
+   (103, 'Luis', 'Jimenez', 22, 'Luis@gmail.com', 'luis123', 'user'),
+   (104, 'Juan', 'Contreras', 25, 'Juan@gmail.com', 'juan123', 'user'),
+   (105, 'Diana', 'Olivier', 19, 'Diana@gmail.com', 'diana123', 'user');
+
+---Creacion de la tabla 2
+
+CREATE TABLE categoria(
+    id INT PRIMARY KEY,
+    nombre VARCHAR(50),
+    tipo VARCHAR(50),
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fecha_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+INSERT INTO categoria (id, nombre, tipo) VALUES
+   (001, 'electronicos', 'tecnologia'),
+   (002, 'ropa', 'moda'),
+   (003, 'libros', 'cultura');
+
+
+
+---Creacion de la tabla 3
+
+CREATE TABLE productos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_producto VARCHAR(50),
+    precio INT,
+    stocK INT, 
+    id_categoria INT, 
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fecha_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_categoria)  REFERENCES categoria(id)
+);
+INSERT INTO productos (nombre_producto, precio, stock, id_categoria) VALUES
+   ('licuadora', 50.00, 80, 001),
+   ('computadora', 250.00, 150, 001),
+   ('camisa', 15.00, 250, 002),
+   ('zapatos', 50.00, 200, 002),
+   ('libreta', 10.00, 150, 003),
+   ('Mi angelito', 15.00, 180, 003);
+
+
+---Creacion de la tabla 4 ventas (id, producto_id, usuario_id, cantidad, precio_total, fechaCreacion, fechaActualizacion).
+
+CREATE TABLE ventas(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    producto_id INT, 
+    usuario_id INT, 
+    cantidad INT, 
+    precio_total INT,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fecha_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN INT (usuario_id)  REFERENCES usuarios(id),
+    FOREIGN KEY (producto_id)  REFERENCES productos(id)
+);
+
+INSERT INTO ventas(producto_id, usuario_id, cantidad, precio_total) VALUES
+    (1, 101, 1, 50.00),
+    (4, 101, 2, 100.00),
+    (5, 102, 2, 20.00),
+    (6, 102, 1, 15.00),
+    (2, 103, 1, 250.00),
+    (3, 103, 3, 45.00),
+    (4, 104, 2, 100.00),
+    (6, 104, 2, 30.00),
+    (1, 105, 1, 50.00),
+    (5, 105, 2, 20.00);
+
+
+- Seleccionar usuarios con un rol especifico.
+
+SELECT * FROM usuarios WHERE rol = 'Admin'; 
+
+- Obtener el stock disponible de todos los productos.
+
+SELECT stock FROM productos;
+
+- Calcular el total de ventas por usuario_id
+
+SELECT usuario_id, SUM(precio_total) AS total_ventas
+FROM ventas
+GROUP BY usuario_id;
+
+
+- Actualizar el precio de un producto mayor a 100 y aplicar descuento del 10%.
+UPDATE productos
+SET precio = precio * 0.9
+WHERE precio > 100;
+
+
+-Eliminar ventas de un producto agotado (con un stock de 0).
+DELETE FROM ventas
+WHERE producto_id IN (SELECT id FROM productos WHERE stock = 0);
+
+
+
+   
+
+
